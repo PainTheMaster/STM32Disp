@@ -56,6 +56,8 @@ static void MX_USART2_UART_Init(void);
 static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
 void LEDDisp_Init(void);
+void LEDDIsp_CommandWrite(uint8_t);
+void LEDDisp_DataWrite(uint8_t);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -94,7 +96,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-
+  LEDDISP_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
