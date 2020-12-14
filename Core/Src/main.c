@@ -72,7 +72,8 @@ void LEDDisp_DataWrite(uint8_t);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	int i, j;
+	uint8_t R, G, B, Dot1, Dot2;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -97,6 +98,27 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   LEDDISP_Init();
+
+  R = 7;
+  G = 0;
+  B = 0;
+  Dot1 = (R<<5) | (G<<2)|B;
+
+  R = 0;
+  G = 0;
+  B = 3;
+  Dot2 = (R<<5) | (G<<2)|B;
+
+  for(j = 0; j < 64; j++){
+	  for(i=0; i<96; i++){
+		  if(j<8 && i<16){
+			  LEDDisp_DataWrite(Dot1);
+		  } else {
+			  LEDDisp_DataWrite(Dot2);
+		  }
+	  }
+  }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -294,7 +316,6 @@ void LEDDisp_Init(void){
 
 	LEDDisp_CommandWrite(0xAF);	// SetDispOn
 	HAL_Delay(110);
-
 }
 
 void LEDDisp_CommandWrite(uint8_t command){
